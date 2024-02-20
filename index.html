@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quản lý nhân sự</title>
+    <style>
+        .nhan-vien-info {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách nhân viên</h1>
+    <div id="nhanVienContainer"></div>
+
+    <script>
+        class NhanVien {
+          constructor(maNV, hoTen, ngaySinh, phongBan, heSoLuong) {
+            this.maNV = maNV;
+            this.hoTen = hoTen;
+            this.ngaySinh = ngaySinh;
+            this.phongBan = phongBan;
+            this.heSoLuong = heSoLuong;
+          }
+
+          capNhatHoTen(hoTenMoi) {
+            this.hoTen = hoTenMoi;
+          }
+
+          capNhatNgaySinh(ngaySinhMoi) {
+            this.ngaySinh = ngaySinhMoi;
+          }
+
+          capNhatPhongBan(phongBanMoi) {
+            this.phongBan = phongBanMoi;
+          }
+
+          capNhatHeSoLuong(heSoLuongMoi) {
+            this.heSoLuong = heSoLuongMoi;
+          }
+
+          hienThiThongTin() {
+            let nhanVienContainer = document.getElementById("nhanVienContainer");
+
+            let nhanVienInfo = document.createElement("div");
+            nhanVienInfo.classList.add("nhan-vien-info");
+
+            let maNVElement = document.createElement("p");
+            maNVElement.textContent = "Mã NV: " + this.maNV;
+            nhanVienInfo.appendChild(maNVElement);
+
+            let hoTenElement = document.createElement("p");
+            hoTenElement.textContent = "Họ và tên: " + this.hoTen;
+            nhanVienInfo.appendChild(hoTenElement);
+
+            let ngaySinhElement = document.createElement("p");
+            ngaySinhElement.textContent = "Ngày sinh: " + this.ngaySinh;
+            nhanVienInfo.appendChild(ngaySinhElement);
+
+            let phongBanElement = document.createElement("p");
+            phongBanElement.textContent = "Phòng ban: " + this.phongBan;
+            nhanVienInfo.appendChild(phongBanElement);
+
+            let heSoLuongElement = document.createElement("p");
+            heSoLuongElement.textContent = "Hệ số lương: " + this.heSoLuong;
+            nhanVienInfo.appendChild(heSoLuongElement);
+
+            nhanVienContainer.appendChild(nhanVienInfo);
+          }
+        }
+
+        function quanLyNhanVien() {
+          let n = parseInt(prompt("Nhập số lượng nhân viên:"));
+          let danhSachNhanVien = [];
+
+          for (let i = 0; i < n; i++) {
+            let maNV = prompt("Nhập mã nhân viên:");
+            let hoTen = prompt("Nhập họ và tên:");
+            let ngaySinh = prompt("Nhập ngày tháng năm sinh:");
+            let phongBan = prompt("Nhập phòng ban:");
+            let heSoLuong = parseFloat(prompt("Nhập hệ số lương:"));
+
+            let nhanVien = new NhanVien(maNV, hoTen, ngaySinh, phongBan, heSoLuong);
+            danhSachNhanVien.push(nhanVien);
+          }
+
+          for (let i = 0; i < danhSachNhanVien.length; i++) {
+            danhSachNhanVien[i].hienThiThongTin();
+          }
+        }
+
+        quanLyNhanVien();
+    </script>
+</body>
+</html>
